@@ -1,6 +1,6 @@
 # DynamicLink
 
-A lightweight, high-performance C++ dynamic library loader with hot-reloading support. Designed for maximum performance and minimal footprint - only **46KB** binary size!
+A lightweight, high-performance C++ dynamic library loader with hot-reloading support. Designed for maximum performance and minimal footprint.
 
 ## 🚀 Features
 
@@ -26,7 +26,7 @@ A lightweight, high-performance C++ dynamic library loader with hot-reloading su
 include(FetchContent)
 FetchContent_Declare(
     DynamicLink
-    GIT_REPOSITORY https://github.com/your-username/DynamicLink.git
+    GIT_REPOSITORY https://github.com/YzK0741/DynamicLink.git
     GIT_TAG        main
 )
 FetchContent_MakeAvailable(DynamicLink)
@@ -37,7 +37,7 @@ target_link_libraries(your_target PRIVATE DynamicLink)
 ### Manual Build
 
 ```bash
-git clone https://github.com/your-username/DynamicLink.git
+git clone https://github.com/YzK0741/DynamicLink.git
 cd DynamicLink
 mkdir build && cd build
 cmake ..
@@ -182,16 +182,16 @@ cmake --build build
 - `operator()` - Call wrapped function
 - `setFallback(func)` - Set fallback function
 - `setCheck(enable)` - Enable/disable safety checks
-- `getRawPointer()` - Get raw function pointer
+- `getRawPointer()` - Get raw function pointer with type
 
 ## 🤝 Contributing
 
 We welcome contributions! Please feel free to submit pull requests, report bugs, or suggest new features.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch 
 5. Open a Pull Request
 
 ## 📄 License
