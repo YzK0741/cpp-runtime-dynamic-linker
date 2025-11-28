@@ -9,7 +9,6 @@ A lightweight, high-performance C++ dynamic library loader with hot-reloading su
 - **⚡ High Performance** - Optimized caching with optional safety checks
 - **🛡️ Thread Safe** - Full thread support with shared mutex protection
 - **🌍 Cross Platform** - Windows and Linux support
-- **📦 Tiny Footprint** - 46KB (RTTI and exceptions disabled)
 - **🔄 Fallback Support** - Graceful degradation with custom fallback functions
 
 ## 📋 Requirements
