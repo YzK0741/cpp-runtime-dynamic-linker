@@ -25,7 +25,7 @@ A lightweight, high-performance C++ dynamic library loader with hot-reloading su
 include(FetchContent)
 FetchContent_Declare(
     DynamicLink
-    GIT_REPOSITORY https://github.com/YzK0741/DynamicLink.git
+    GIT_REPOSITORY https://github.com/YzK0741/cpp-runtime-dynamic-linker.git
     GIT_TAG        main
 )
 FetchContent_MakeAvailable(DynamicLink)
@@ -36,7 +36,7 @@ target_link_libraries(your_target PRIVATE DynamicLink)
 ### Manual Build
 
 ```bash
-git clone https://github.com/YzK0741/DynamicLink.git
+git clone https://github.com/YzK0741/cpp-runtime-dynamic-linker.git
 cd DynamicLink
 mkdir build && cd build
 cmake ..
