@@ -3,11 +3,13 @@ project(DynamicLink VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_library(DynamicLink STATIC DynamicLinkImpl.cpp
-        FunctionDescriptor.cpp
-        CacheManager.cpp
+add_library(DynamicLink STATIC src/DynamicLinkImpl.cpp
+        src/FunctionDescriptor.cpp
+        src/CacheManager.cpp
+        src/LibraryFile.cpp
 )
 
+target_include_directories(DynamicLink PRIVATE include)
 target_compile_options(DynamicLink PRIVATE
     -fno-rtti
     -fno-exceptions

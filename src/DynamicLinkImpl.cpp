@@ -1,16 +1,24 @@
 #include <iostream>
-#include "DynamicLinkImpl.h"
-#include "CacheManager.h"
+#include "internal/DynamicLinkImpl.h"
+#include "internal/CacheManager.h"
+#include "internal/Platforms.h"
 
 #define instance Detail::CacheManager::instance()
+
+#ifdef __linux__
+
+int ldFlag = RTLD_LAZY;
+int GetFlag(){return ldFlag;}
+void SetFlag(int flag){ldFlag = flag;}
+
+#endif
 
 Detail::FunctionDescriptor*
 Detail::GetFunctionImpl(const std::string &lib, const std::string &func) {
     if (instance.containsLibrary(lib)) {
         if (instance.containsFunction(lib, func)) {
-            auto descriptor = instance.getFunctionDescriptor(lib, func);
-            if (descriptor->functionPointer == 0) {
-                std::cerr << "bad functon" << func << "in lib" << lib;
+            if (const auto descriptor = instance.getFunctionDescriptor(lib, func); descriptor->functionPointer == 0) {
+                std::cerr << "bad function " << func << "in lib " << lib;
                 std::terminate();
             }
             return instance.getFunctionDescriptor(lib, func);
@@ -19,7 +27,7 @@ Detail::GetFunctionImpl(const std::string &lib, const std::string &func) {
         const LHANDLE handle = instance.getLibraryHandle(lib);
         const auto function = GET_FUNC(handle, func.c_str());
         if (!function) {
-            std::cerr << "bad functon" << func << "in lib" << lib;
+            std::cerr << "bad function " << func << "in lib " << lib;
             std::terminate();
         }
         instance(lib, func, function);
@@ -32,6 +40,24 @@ Detail::GetFunctionImpl(const std::string &lib, const std::string &func) {
     instance(lib, func, function);
     return instance.getFunctionDescriptor(lib, func);
 }
+
+LHANDLE Detail::LoadLibraryWithCheck(const std::string &lib) {
+    std::string libraryName = lib;
+    if (!IsFullName(libraryName)) {
+        libraryName = GetFullName(libraryName);
+    }
+    if (!IsValidPath(libraryName)) {
+        std::cerr << std::format("lib {} does not exist", lib);
+        std::terminate();
+    }
+    const LHANDLE handle = LOAD_LIB(libraryName.c_str());
+    if (!handle) {
+        std::cerr << "failed at loading" << libraryName;
+        std::terminate();
+    }
+    return handle;
+}
+
 
 void DynamicLink::PreloadLibrary(const std::string &lib) {
     if (!instance.containsLibrary(lib)) {

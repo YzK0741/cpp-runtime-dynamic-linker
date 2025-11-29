@@ -4,7 +4,7 @@
 
 //***** FunctionDescriptor's Implement *****
 
-#include "DynamicLinkImpl.h"
+#include "internal//DynamicLinkImpl.h"
 
 Detail::FunctionDescriptor::FunctionDescriptor() {
     this->functionPointer = 0;

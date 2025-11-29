@@ -6,6 +6,7 @@
 #define DYNAMICLINK_DYNAMICLINK_IPP
 
 #include <functional>
+#include <iostream>
 #include <memory>
 #include <shared_mutex>
 #include <string>
@@ -21,9 +22,9 @@ namespace DynamicLink {
     public:
         using FuncPointer = std::add_pointer_t<FuncType>;
         explicit FunctionWrapper(const std::string& libName, const std::string& funcName) noexcept {
-            const auto descriptor = Detail::GetFunctionImpl(libName, funcName);
-            if (!descriptor || !descriptor->functionPointer) {
-                std:: cerr << "dynamic function not found";
+            this->descriptor = Detail::GetFunctionImpl(libName, funcName);
+            if (!this->descriptor || !this->descriptor->functionPointer) {
+                std::cerr << "dynamic function not found";
                 std::terminate();
             }
             this->libName = libName;
@@ -44,8 +45,8 @@ namespace DynamicLink {
                     this->descriptor = Detail::GetFunctionImpl(libName, funcName);
                 }
 
-                if (this->descriptor) {
-                    if (!this->descriptor->functionPointer && this->fallback){
+                if (!this->descriptor->functionPointer) {
+                    if (this->fallback){
                         std::cerr << "invalid dynamic function call: library has unloaded with no fallback";
                         std::terminate();
                     }
@@ -60,7 +61,10 @@ namespace DynamicLink {
             if constexpr (std::is_void_v<ReturnType>) {
                 if (!this->descriptor->functionPointer) {
                     if (this->fallback) {
-                        fallback(std::forward<Args>(args)...);
+                        std::invoke(
+                            std::forward<std::function<FuncType>>(this->fallback),
+                            std::forward<Args>(args)...
+                            );
                     } else {
                         std:: cerr << "invalid dynamic function call: library has unloaded with no fallback";
                         std::terminate();
@@ -77,7 +81,10 @@ namespace DynamicLink {
                 ReturnType res;
                 if (!this->descriptor->functionPointer) {
                     if (this->fallback) {
-                        res = fallback(std::forward<Args>(args)...);
+                        res = std::invoke(
+                            std::forward<std::function<FuncType>>(this->fallback),
+                            std::forward<Args>(args)...
+                            );
                     } else {
                         std:: cerr << "invalid dynamic function call: library has unloaded with no fallback";
                         std::terminate();
@@ -106,11 +113,11 @@ namespace DynamicLink {
         }
 
     private:
-        Detail::FunctionDescriptor* descriptor{nullptr}; //< save the dynamic function's address
+        Detail::FunctionDescriptor* descriptor{nullptr};//< save the dynamic function's address
         std::string libName;
         std::string funcName;
         std::unique_ptr<std::function<FuncType>> fallback; //< when can't call dynamic function,
-                                                           //call this one(all callable objects)
+                                                           //call this one (all callable objects)
         bool check{true};
     };
     template<typename FuncType>

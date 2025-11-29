@@ -1,11 +1,12 @@
 #ifndef DYNAMICLINK_LIBRARY_H
 #define DYNAMICLINK_LIBRARY_H
 
+#include <format>
 #include <string>
 #include <memory>
 #include <shared_mutex>
-#include <iostream>
 #include "Platforms.h"
+#include "LibraryFile.h"
 namespace Detail {
     struct FunctionDescriptor {
         FunctionDescriptor();
@@ -23,14 +24,7 @@ namespace Detail {
     bool DescriptorShouldUpdate(const std::string& libName);
     std::string GetActualLibraryName(const std::string& oldLib);
 
-    inline LHANDLE LoadLibraryWithCheck(const std::string& lib) {
-        const LHANDLE handle = LOAD_LIB(lib.c_str());
-        if (!handle) {
-            std::cerr << "failed at loading" << lib;
-            std::terminate();
-        }
-        return handle;
-    }
+    LHANDLE LoadLibraryWithCheck(const std::string& lib);
 }
 
 namespace DynamicLink {

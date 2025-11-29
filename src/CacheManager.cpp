@@ -7,9 +7,8 @@
 #include <iostream>
 #include <mutex>
 #include <ranges>
-#include <thread>
 #include <chrono>
-#include "CacheManager.h"
+#include "internal/CacheManager.h"
 
 LHANDLE
 Detail::CacheManager::getLibraryHandle(const std::string &lib) {
@@ -79,7 +78,7 @@ Detail::CacheManager::reloadLibrary(const std::string &oldLib, const std::string
         if (const auto function = GET_FUNC(handle, functionName.c_str()))
             this->libraries[newLib].functions[functionName] = function;
     }
-    this->doUnloadLibrary(oldLib);
+    this->unloadLibrary(oldLib);
 }
 
 bool Detail::CacheManager::isOutOfDate(const std::string & libName) const {

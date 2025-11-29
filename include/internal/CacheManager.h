@@ -8,7 +8,7 @@
 
 #include <unordered_map>
 #include <shared_mutex>
-#include "DynamicLinkImpl.h"
+#include "internal//DynamicLinkImpl.h"
 
 //Single instance mode class
 namespace Detail {
