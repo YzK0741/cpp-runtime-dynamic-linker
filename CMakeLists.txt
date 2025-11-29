@@ -51,3 +51,27 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/DynamicLinkConfigVersion.cmake
     DESTINATION lib/cmake/DynamicLink
 )
+
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    set(DOXYGEN_PROJECT_NAME "DynamicLink")
+    set(DOXYGEN_PROJECT_BRIEF "cpp-runtime-dynamic-linker")
+    set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/docs)
+    set(DOXYGEN_GENERATE_HTML YES)
+    set(DOXYGEN_GENERATE_LATEX NO)
+
+    if(DOXYGEN_DOT_FOUND)
+        set(DOXYGEN_HAVE_DOT YES)
+        set(DOXYGEN_CALL_GRAPH YES)
+        set(DOXYGEN_CALLER_GRAPH YES)
+    else()
+        set(DOXYGEN_HAVE_DOT NO)
+        message(WARNING "Graphviz not found, diagrams will not be generated")
+    endif()
+
+    doxygen_add_docs(documentation
+            ${CMAKE_SOURCE_DIR}/include
+            ${CMAKE_SOURCE_DIR}/src
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+endif()

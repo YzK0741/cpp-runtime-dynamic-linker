@@ -4,7 +4,6 @@
 #include <vector>
 #include "internal/LibraryFile.h"
 #include "internal/Platforms.h"
-
 #ifdef __linux__
 const std::string prefix(PREFIX);
 #endif

@@ -13,8 +13,9 @@
 LHANDLE
 Detail::CacheManager::getLibraryHandle(const std::string &lib) {
     std::shared_lock lock(this->mutex);
-    if (const auto cache = this->libraries.find(lib); cache != this->libraries.end())
+    if (const auto cache = this->libraries.find(lib); cache != this->libraries.end()) {
         return cache->second.handle;
+    }
     return nullptr;
 }
 
@@ -41,8 +42,9 @@ Detail::CacheManager::containsLibrary(const std::string& lib) const {
 bool
 Detail::CacheManager::containsFunction(const std::string &lib, const std::string &func){
     std::shared_lock lock(this->mutex);
-    if (this->libraries.contains(lib))
+    if (this->libraries.contains(lib)) {
         return this->libraries[lib].functions.contains(func);
+    }
     return false;
 }
 
@@ -74,9 +76,10 @@ Detail::CacheManager::reloadLibrary(const std::string &oldLib, const std::string
     }
     const LHANDLE handle = LoadLibraryWithCheck(newLib);
     this->libraryAlias[oldLib] = newLib;
-    for (auto& functionName : this->libraries[oldLib].functions | std::views::keys) {
-        if (const auto function = GET_FUNC(handle, functionName.c_str()))
+    for (const auto& functionName : this->libraries[oldLib].functions | std::views::keys) {
+        if (const auto function = GET_FUNC(handle, functionName.c_str())) {
             this->libraries[newLib].functions[functionName] = function;
+        }
     }
     this->unloadLibrary(oldLib);
 }
@@ -88,8 +91,9 @@ bool Detail::CacheManager::isOutOfDate(const std::string & libName) const {
 
 std::string Detail::CacheManager::getNewName(const std::string & libName) {
     std::shared_lock lock(this->mutex);
-    if (this->libraryAlias.contains(libName))
+    if (this->libraryAlias.contains(libName)) {
         return this->libraryAlias[libName];
+    }
     return libName;
 }
 
@@ -103,6 +107,7 @@ void Detail::CacheManager::doUnloadLibrary(const std::string & lib) {
     }
     UNLOAD_LIB(instance().libraries[lib].handle);
     this->libraries.erase(lib);
-    if (this->libraryAlias.contains(lib))
+    if (this->libraryAlias.contains(lib)) {
         this->libraryAlias.erase(lib);
+    }
 }

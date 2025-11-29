@@ -1,0 +1,11 @@
+<map id="include/internal/Platforms.h" name="include/internal/Platforms.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="103,5,282,32"/>
+<area shape="rect" id="Node000002" href="$DynamicLinkImpl_8h.html" title=" " alt="" coords="110,80,274,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,45,195,81,190,79,191,50"/>
+<area shape="rect" id="Node000003" href="$DynamicLink_8ipp.html" title=" " alt="" coords="5,171,169,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="151,134,105,172,102,168,155,131"/>
+<area shape="rect" id="Node000005" href="$CacheManager_8h.html" title=" " alt="" coords="193,171,405,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="233,130,285,170,280,170,231,135"/>
+<area shape="rect" id="Node000004" href="$DynamicLink_8h.html" title="User&#45;friendly interface for dynamic library loading and function calling." alt="" coords="10,245,164,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,211,89,246,85,244,85,215"/>
+</map>

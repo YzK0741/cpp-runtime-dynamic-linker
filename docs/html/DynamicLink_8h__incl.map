@@ -1,0 +1,34 @@
+<map id="include/DynamicLink.h" name="include/DynamicLink.h">
+<area shape="rect" id="Node000001" title="User&#45;friendly interface for dynamic library loading and function calling." alt="" coords="5,5,159,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="19,304,73,331"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,35,54,86,31,155,26,192,26,229,26,256,36,289,31,290,21,256,21,229,21,192,26,154,49,84,76,30"/>
+<area shape="rect" id="Node000003" href="$DynamicLink_8ipp.html" title=" " alt="" coords="136,80,254,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,30,165,70,160,72,102,35"/>
+<area shape="poly" id="edge7_Node000003_Node000002" title=" " alt="" coords="134,104,87,123,66,137,48,156,34,189,31,224,34,259,40,289,35,289,29,260,25,224,29,187,44,153,62,133,85,118,137,100"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="58,155,135,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="176,109,128,147,124,143,180,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="160,155,231,181"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="196,105,198,140,193,138,194,110"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="420,229,488,256"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="255,98,370,117,421,132,440,142,453,153,461,167,465,183,463,216,459,213,460,184,456,169,449,156,437,146,419,137,369,122,255,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="512,229,615,256"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="254,95,305,101,362,111,421,128,477,152,517,182,548,218,543,217,513,186,474,157,419,133,361,117,304,106,256,100"/>
+<area shape="rect" id="Node000008" href="$DynamicLinkImpl_8h.html" title=" " alt="" coords="256,155,439,181"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="222,105,309,147,304,148,222,110"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="263,183,168,205,126,218,98,231,73,259,57,291,53,288,69,256,95,227,124,213,167,200,267,180"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="366,179,425,220,420,220,365,184"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="385,179,514,224,509,224,385,185"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="221,229,279,256"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="333,181,280,222,277,218,328,183"/>
+<area shape="rect" id="Node000010" href="$Platforms_8h.html" title=" " alt="" coords="108,229,197,256"/>
+<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="311,183,202,226,200,221,316,181"/>
+<area shape="rect" id="Node000011" href="$LibraryFile_8h.html" title=" " alt="" coords="304,229,396,256"/>
+<area shape="poly" id="edge14_Node000008_Node000011" title=" " alt="" coords="349,180,351,215,347,212,346,184"/>
+<area shape="poly" id="edge16_Node000011_Node000002" title=" " alt="" coords="304,258,88,309,87,304,303,252"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="407,304,488,331"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="368,254,421,295,416,294,366,259"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="205,304,292,331"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="335,256,280,297,278,292,330,257"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="317,304,383,331"/>
+<area shape="poly" id="edge18_Node000011_Node000014" title=" " alt="" coords="352,255,352,290,348,287,348,258"/>
+</map>

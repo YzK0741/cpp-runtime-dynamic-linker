@@ -17,7 +17,7 @@ Detail::FunctionDescriptor*
 Detail::GetFunctionImpl(const std::string &lib, const std::string &func) {
     if (instance.containsLibrary(lib)) {
         if (instance.containsFunction(lib, func)) {
-            if (const auto descriptor = instance.getFunctionDescriptor(lib, func); descriptor->functionPointer == 0) {
+            if (auto *const descriptor = instance.getFunctionDescriptor(lib, func); descriptor->functionPointer == 0) {
                 std::cerr << "bad function " << func << "in lib " << lib;
                 std::terminate();
             }
@@ -26,8 +26,8 @@ Detail::GetFunctionImpl(const std::string &lib, const std::string &func) {
 
         const LHANDLE handle = instance.getLibraryHandle(lib);
         const auto function = GET_FUNC(handle, func.c_str());
-        if (!function) {
-            std::cerr << "bad function " << func << "in lib " << lib;
+        if (function == 0U) {
+            std::cerr << std::format("bad function {} in lib {}", func, lib);
             std::terminate();
         }
         instance(lib, func, function);
@@ -51,8 +51,9 @@ LHANDLE Detail::LoadLibraryWithCheck(const std::string &lib) {
         std::terminate();
     }
     const LHANDLE handle = LOAD_LIB(libraryName.c_str());
-    if (!handle) {
-        std::cerr << "failed at loading" << libraryName;
+    if (handle == nullptr) {
+        std::cerr << std::format("failed at loading{}, here is the system error:\n{}"
+            , libraryName, GET_ERROR());
         std::terminate();
     }
     return handle;

@@ -10,7 +10,7 @@
 #include <memory>
 #include <shared_mutex>
 #include <string>
-#include "DynamicLinkImpl.h"
+#include "internal//DynamicLinkImpl.h"
 
 namespace DynamicLink {
 
@@ -24,7 +24,8 @@ namespace DynamicLink {
         explicit FunctionWrapper(const std::string& libName, const std::string& funcName) noexcept {
             this->descriptor = Detail::GetFunctionImpl(libName, funcName);
             if (!this->descriptor || !this->descriptor->functionPointer) {
-                std::cerr << "dynamic function not found";
+                std::cerr << std::format("dynamic function not found, here is the system error:\n",
+                    GET_ERROR());
                 std::terminate();
             }
             this->libName = libName;
@@ -117,7 +118,7 @@ namespace DynamicLink {
         std::string libName;
         std::string funcName;
         std::unique_ptr<std::function<FuncType>> fallback; //< when can't call dynamic function,
-                                                           //call this one (all callable objects)
+                                                           // use this one (all callable objects)
         bool check{true};
     };
     template<typename FuncType>
